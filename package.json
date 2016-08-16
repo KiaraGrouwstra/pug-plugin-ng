@@ -1,0 +1,25 @@
+{
+  "name": "pug-plugin-ng",
+  "version": "0.0.1",
+  "description": "A Pug plugin allowing unquoted use of Angular 2's `[(bananabox)]=\"val\"` syntax",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tycho01/pug-plugin-ng.git"
+  },
+  "keywords": [
+    "pug",
+    "angular2"
+  ],
+  "author": "Tycho Grouwstra",
+  "license": "MIT",
+  "devDependencies": {
+    "pug": "^2.0.0-beta5"
+  },
+  "peerDependencies": {
+    "pug": "^2.0.0-beta5"
+  }
+}

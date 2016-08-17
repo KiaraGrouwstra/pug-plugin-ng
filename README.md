@@ -38,9 +38,9 @@ module.exports = {
     //your modules...
     loaders: [
       {
-				test: /\.pug$/, loaders: [
-          'pug-html?' + JSON.stringify({ plugins: [pug_plugin_ng] }),
-				],
+				test: /\.pug$/,
+        loader: 'pug-html',
+        query: { plugins: [pug_plugin_ng] },
 			},
     ]
   ]

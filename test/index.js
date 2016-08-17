@@ -14,7 +14,7 @@ fs.readdirSync(dir).forEach(function (testCase) {
     var str = fs.readFileSync(dir + testCase, 'utf8');
     var result = pug.render(str, { plugins: [pug_plugin_ng] });
     var actPath = dir + testCase.replace(/\.pug$/, '.actual.html');
-    fs.writeFileSync(actPath, result.join('\n'));
-    assert.deepEqual(expected, result);
+    fs.writeFileSync(actPath, result);
+    assert.equal(expected, result);
   }
 });

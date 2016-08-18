@@ -10,7 +10,7 @@ fs.readdirSync(dir).forEach(function (testCase) {
   if (/\.pug$/.test(testCase)) {
     console.dir(testCase);
     var expPath = dir + testCase.replace(/\.pug$/, '.expected.html');
-    var expected = fs.readFileSync(expPath, 'utf8').split(/\n/);
+    var expected = fs.readFileSync(expPath, 'utf8');
     var str = fs.readFileSync(dir + testCase, 'utf8');
     var result = pug.render(str, { plugins: [pug_plugin_ng] });
     var actPath = dir + testCase.replace(/\.pug$/, '.actual.html');

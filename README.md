@@ -13,6 +13,8 @@ npm install pug-plugin-ng
 
 ### With webpack:
 
+Note that this won't actually work, since webpack kills functions in its loader options with JSON serialization. :(
+
 `myComp.pug`:
 ```
 .items(

@@ -6,16 +6,14 @@ While you're at it, you may also want to set the `doctype` to `html` in Pug's op
 ## Installation
 
 ```
-# WIP
-# The following won't work
+npm install pug-plugin-ng@github:tycho01/pug-plugin-ng
+// future, not available yet:
 npm install pug-plugin-ng
 ```
 
 ## Usage:
 
 ### With webpack:
-
-Note that this won't actually work, since webpack kills functions in its loader options with JSON serialization. :(
 
 `myComp.pug`:
 ```
@@ -50,6 +48,21 @@ module.exports = {
     ]
   ]
 };
+```
+
+### with Gulp (e.g. for Ionic):
+```
+let pug = require('gulp-pug');
+let pug_plugin_ng = require('pug-plugin-ng');
+let pug_opts = { doctype: 'html', plugins: [pug_plugin_ng], pretty: true };
+gulp.task('pug', () =>
+  gulp.src('app/**/*.pug')
+  .pipe(pug(pug_opts))
+  .pipe(gulp.dest('www/build'))
+);
+
+// add pug task to your build/watch tasks, incl. a watch function like this:
+gulpWatch('src/**/*.pug', () => gulp.start('pug'));
 ```
 
 ### Alternative: inline

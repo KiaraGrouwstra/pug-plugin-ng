@@ -1,0 +1,13 @@
+ng-container([ngSwitch]='type')
+  template([ngSwitchCase]=`'object'`)
+    object([val]=`val` [schema]=`new_schema` [named]=`false`)
+  template([ngSwitchCase]=`'array'`)
+    array([val]=`val` [schema]=`new_schema` [named]=`false`)
+  template([ngSwitchCase]=`'scalar'`)
+    ng-container([ngSwitch]=`isHtml(val)`)
+      template([ngSwitchCase]=`true`)
+        myiframe([val]=`val`)
+      template(ngSwitchDefault)
+        .scalar([innerHtml]=`val | scalar:new_schema`)
+  template(ngSwitchDefault)
+    p UNIMPLEMENTED OUTPUT-VALUE TYPE ({{ type | json }})!

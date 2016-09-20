@@ -1,7 +1,7 @@
 var characterParser = require('character-parser');
 
 // Angular 2's opening brackets -- a sign a new attribute key has started
-const ng2Re = /[([]/;
+const ng2Re = /[*([]/;
 
 module.exports = {
   lex: {

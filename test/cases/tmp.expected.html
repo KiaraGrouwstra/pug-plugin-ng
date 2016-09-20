@@ -1,1 +1,22 @@
-<ng-container [ngSwitch]="type"><template [ngSwitchCase]="'object'"><object [val]="val" [schema]="new_schema" [named]="false"></object></template><template [ngSwitchCase]="'array'"><array [val]="val" [schema]="new_schema" [named]="false"></array></template><template [ngSwitchCase]="'scalar'"><ng-container [ngSwitch]="isHtml(val)"><template [ngSwitchCase]="true"><myiframe [val]="val"></myiframe></template><template ngSwitchDefault><div class="scalar" [innerHtml]="val | scalar:new_schema"></div></template></ng-container></template><template ngSwitchDefault><p>UNIMPLEMENTED OUTPUT-VALUE TYPE ({{ type | json }})!</p></template></ng-container>
+
+<ng-container [ngSwitch]="type">
+  <template [ngSwitchCase]="'object'">
+    <object [val]="val" [schema]="new_schema" [named]="false"></object>
+  </template>
+  <template [ngSwitchCase]="'array'">
+    <array [val]="val" [schema]="new_schema" [named]="false"></array>
+  </template>
+  <template [ngSwitchCase]="'scalar'">
+    <ng-container [ngSwitch]="isHtml(val)">
+      <template [ngSwitchCase]="true">
+        <myiframe [val]="val"></myiframe>
+      </template>
+      <template ngSwitchDefault>
+        <div class="scalar" [innerHtml]="val | scalar:new_schema"></div>
+      </template>
+    </ng-container>
+  </template>
+  <template ngSwitchDefault>
+    <p>UNIMPLEMENTED OUTPUT-VALUE TYPE ({{ type | json }})!</p>
+  </template>
+</ng-container>

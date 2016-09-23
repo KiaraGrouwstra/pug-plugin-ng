@@ -9,9 +9,7 @@ While you're at it, you may also want to set the `doctype` to `html` in Pug's op
 ## Installation
 
 ```
-npm install pug-plugin-ng@github:tycho01/pug-plugin-ng
-// future, not available yet:
-npm install pug-plugin-ng
+npm i --saveDev pug-plugin-ng
 ```
 
 ## Why does this exist?

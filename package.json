@@ -12,7 +12,10 @@
   },
   "keywords": [
     "pug",
-    "angular2"
+    "jade",
+    "ng2",
+    "angular2",
+    "angular"
   ],
   "author": "Tycho Grouwstra",
   "license": "MIT",

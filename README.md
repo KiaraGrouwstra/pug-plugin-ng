@@ -2,9 +2,31 @@
 
 A Pug plugin allowing unquoted use of Angular 2's `[(bananabox)]="val"` syntax.
 
+## What it does:
+
+Allow you to go from this:
+```
+<button id="foo" class="bar" #myVar md-raised-button [disabled]="isDisabled" (click)="boom">text</button>
+```
+
+Or these:
+```
+button#foo.bar(#myVar='' md-raised-button='' '[disabled]'="isDisabled" '(click)'="boom") text
+button#foo.bar(#myVar='', md-raised-button='', [disabled]="isDisabled", (click)="boom") text
+```
+
+To this:
+```
+button#foo.bar(#myVar md-raised-button [disabled]="isDisabled" (click)="boom") text
+```
+
+The idea: allow your Pug to get terser and closer to the HTML, allowing you to use HTML snippets found online in Pug with less effort.
+
+## How it works:
+
 It does this by patching `pug-lexer`'s `attrs` function to allow use of Angular 2 `[property]` / `(event)` bindings without [additional commas/quotes](https://pugjs.org/language/attributes.html#quoted-attributes).
 
-While you're at it, you may also want to set the `doctype` to `html` in Pug's options to allows [attributes with implicit values](https://pugjs.org/language/attributes.html#boolean-attributes) (e.g. Angular 1/2 directives not taking parameters as commonly used in Material2/Ionic2, as well as `#template_variables`).
+While you're at it, you may also want to set the `doctype` to `html` in Pug's options to allow [attributes with implicit values](https://pugjs.org/language/attributes.html#boolean-attributes) (e.g. Angular 1/2 directives not taking parameters as commonly used in Material2/Ionic2, as well as `#template_variables`).
 
 ## Installation
 

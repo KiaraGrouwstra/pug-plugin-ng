@@ -4,23 +4,17 @@ A Pug plugin allowing unquoted use of Angular 2's `[(bananabox)]="val"` syntax.
 ## What it does:
 
 Allow you to go from this:
-
-HTML:
 ```
 <button id="foo" class="bar" #myVar md-raised-button [disabled]="isDisabled" (click)="boom">text</button>
 ```
 
 Or these:
-
-Pug:
 ```
 button#foo.bar(#myVar='' md-raised-button='' '[disabled]'="isDisabled" '(click)'="boom") text
 button#foo.bar(#myVar='', md-raised-button='', [disabled]="isDisabled", (click)="boom") text
 ```
 
 To this:
-
-Pug:
 ```
 button#foo.bar(#myVar md-raised-button [disabled]="isDisabled" (click)="boom") text
 ```

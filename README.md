@@ -49,8 +49,6 @@ To maintain consistency, Pug by default [follows JS semantics](https://github.co
 
 ### With webpack:
 
-Note that this requires using [`pug-ng-html-loader`](https://github.com/tycho01/pug-ng-html-loader) instead of [`pug-html-loader`](https://github.com/willyelm/pug-html-loader). The reason for this is that having to pass in a plugin (patching function) to Pug cannot be done through Webpack, as its JSON serialization strips out any functions, see [here](https://github.com/pugjs/pug-lexer/pull/69#issuecomment-241119765).
-
 `myComp.pug`:
 ```
 .items(
@@ -67,18 +65,46 @@ Note that this requires using [`pug-ng-html-loader`](https://github.com/tycho01/
 })
 ```
 
-In your `webpack.config.js` file, using `pug-ng-html-loader`:
+In your `webpack.config.js` file:
 ```
 module.exports = {
   // your config settings ...
   module: [
     //your modules...
     loaders: [
-      { test: /\.pug$/, loader: 'pug-ng-html' },
+      {
+        test: /\.pug/,
+        loader: 'pug-html', 
+        query: { plugins: [require('pug-plugin-ng')] },
+      },
     ]
   ]
 };
 ```
+
+If you have multiple loaders chained it can be written like this.
+
+```
+      {
+        test: /\.pug/,
+        include: helpers.root('modules'),
+        loaders: [
+          { loader: 'html', query: { root: 'images' } },
+          { loader: 'pug-html', query: { plugins: [require('pug-plugin-ng')] }},
+        ]
+      },
+```
+
+Note that for Webpack 1 this requires using [`pug-ng-html-loader`](https://github.com/tycho01/pug-ng-html-loader) instead of [`pug-html-loader`](https://github.com/willyelm/pug-html-loader). The reason for this is that having to pass in a plugin (patching function) to Pug cannot be done through Webpack, as its JSON serialization strips out any functions, see [here](https://github.com/pugjs/pug-lexer/pull/69#issuecomment-241119765).
+
+Webpack 1, using `pug-ng-html-loader`:
+```
+      { test: /\.pug$/, loader: 'pug-ng-html' },
+```
+
+### with Rollup:
+
+Use [rollup-plugin-pug](https://github.com/aMarCruz/rollup-plugin-pug) or [rollup-plugin-pug-html](https://github.com/tycho01/rollup-plugin-pug-html/) and pass `plugins: [require('pug-plugin-ng')]` as part of the Pug options.
 
 ### with Gulp (e.g. for Ionic):
 ```
@@ -94,6 +120,8 @@ gulp.task('pug', () =>
 // add pug task to your build/watch tasks, incl. a watch function like this:
 gulpWatch('src/**/*.pug', () => gulp.start('pug'));
 ```
+
+See also [this thread](https://github.com/driftyco/ionic-app-scripts/issues/31) on Ionic 2's introduction of `ionic-app-scripts` since RC, which complicates things.
 
 ### Alternative: inline
 

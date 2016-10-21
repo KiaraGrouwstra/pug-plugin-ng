@@ -75,7 +75,7 @@ module.exports = {
       {
         test: /\.pug/,
         loader: 'pug-html', 
-        query: { plugins: [require('pug-plugin-ng')] },
+        query: { doctype: 'html', plugins: [require('pug-plugin-ng')] },
       },
     ]
   ]
@@ -90,7 +90,7 @@ If you have multiple loaders chained it can be written like this.
         include: helpers.root('modules'),
         loaders: [
           { loader: 'html', query: { root: 'images' } },
-          { loader: 'pug-html', query: { plugins: [require('pug-plugin-ng')] }},
+          { loader: 'pug-html', query: { doctype: 'html', plugins: [require('pug-plugin-ng')] }},
         ]
       },
 ```
@@ -110,7 +110,7 @@ Use [rollup-plugin-pug](https://github.com/aMarCruz/rollup-plugin-pug) or [rollu
 ```
 let pug = require('gulp-pug');
 let pug_plugin_ng = require('pug-plugin-ng');
-let pug_opts = { doctype: 'html', plugins: [pug_plugin_ng], pretty: true };
+let pug_opts = { doctype: 'html', plugins: [pug_plugin_ng] };
 gulp.task('pug', () =>
   gulp.src('app/**/*.pug')
   .pipe(pug(pug_opts))

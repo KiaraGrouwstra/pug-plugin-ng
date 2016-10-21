@@ -26,7 +26,7 @@ The idea: allow your Pug to get terser and closer to the HTML, allowing you to u
 
 It does this by patching `pug-lexer`'s `attrs` function to allow use of Angular 2 `[property]` / `(event)` bindings without [additional commas/quotes](https://pugjs.org/language/attributes.html#quoted-attributes).
 
-While you're at it, you may also want to set the `doctype` to `html` in Pug's options to allow [attributes with implicit values](https://pugjs.org/language/attributes.html#boolean-attributes) (e.g. Angular 1/2 directives not taking parameters as commonly used in Material2/Ionic2, as well as `#template_variables`).
+While you're at it, you may also want to set the `doctype` to `html` in Pug's options to allow [attributes with implicit values](https://pugjs.org/language/attributes.html#boolean-attributes) (e.g. Angular 1/2 directives not taking parameters as commonly used in Material2/Ionic2, as well as `#template_variables`). Otherwise, `#myVar` would need to become `#myVar=''`; similarly directives like `md-raised-button` would need to become `md-raised-button=''`.
 
 ## Installation
 

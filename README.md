@@ -45,6 +45,10 @@ Backward compatibility. So Pug allows using JS in attribute values, and in JS an
 
 To maintain consistency, Pug by default [follows JS semantics](https://github.com/pugjs/pug-lexer/pull/69#issuecomment-239973538) here. So in case you do intend to use `[foo]="val" [bar]` (note the space before the `[`) as an index selector rather than as Angular 2 bindings, this will break your code.
 
+## Can I still use the awkward escaped syntax too?
+
+Yep, no existing syntax has been harmed.
+
 ## Usage:
 
 ### With webpack:

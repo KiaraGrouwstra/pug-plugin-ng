@@ -79,7 +79,7 @@ module.exports = {
       {
         test: /\.pug/,
         loader: 'pug-html', 
-        query: { doctype: 'html', plugins: [require('pug-plugin-ng')] },
+        query: { doctype: 'html', plugins: ['pug-plugin-ng'] },
       },
     ]
   ]
@@ -94,7 +94,7 @@ If you have multiple loaders chained it can be written like this.
         include: helpers.root('modules'),
         loaders: [
           { loader: 'html', query: { root: 'images' } },
-          { loader: 'pug-html', query: { doctype: 'html', plugins: [require('pug-plugin-ng')] }},
+          { loader: 'pug-html', query: { doctype: 'html', plugins: ['pug-plugin-ng'] }},
         ]
       },
 ```

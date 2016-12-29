@@ -51,7 +51,7 @@ Yep, no existing syntax has been harmed.
 
 ## Usage:
 
-### With webpack:
+### With webpack + `pug-html-loader` [`^1.0.10`](https://github.com/tycho01/pug-plugin-ng/pull/3):
 
 `myComp.pug`:
 ```

@@ -3,8 +3,34 @@ var characterParser = require('character-parser');
 // Angular 2's opening brackets -- a sign a new attribute key has started
 const ng2Re = /[*#([]/;
 
+// Angular 17+ control flow keywords and symbols (including deferrable views)
+const ngFlowRe = /^((?:@(?:if|else if|else|for|empty|switch|case|default|let|defer|placeholder|error|loading)|(?:\} ?@(?:else if|else|empty|placeholder|error|loading))|\}))(?:\b|(?=[\s{]|$))([^\n]*)/;
+
 module.exports = {
   lex: {
+    tag: function (lexer) {
+      const match = ngFlowRe.exec(lexer.input);
+      if (!match) {
+        return lexer.tag();
+      }
+
+      const [fullMatch, keyword, rest] = match;
+      const content = keyword + (rest || '') + '\n';
+
+      // determine if the keyword starts a block (allows indented children).
+      // @let and standalone '}' are leaf nodes and should not allow children.
+      const isBlock = keyword !== '@let' && keyword !== '}';
+
+      const textTok = lexer.tok('text', content);
+      lexer.consume(fullMatch.length);
+      lexer.incrementColumn(fullMatch.length);
+      lexer.tokens.push(lexer.tokEnd(textTok));
+
+      if (isBlock) {
+        lexer.tokens.push(lexer.tokEnd(lexer.tok('if', 'true')));
+      }
+      return true;
+    },
     attrs: function () {
       return attrs.call(...arguments);
     }

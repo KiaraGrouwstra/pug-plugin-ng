@@ -15,7 +15,7 @@ module.exports = {
       }
 
       const [fullMatch, keyword, rest] = match;
-      const content = keyword + (rest || '') + '\n';
+      const content = keyword + (rest || '');
 
       // determine if the keyword starts a block (allows indented children).
       // @let and standalone '}' are leaf nodes and should not allow children.
